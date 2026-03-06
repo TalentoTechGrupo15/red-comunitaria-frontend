@@ -1,0 +1,79 @@
+.select{
+    display: flex;
+    position: relative;
+    width: 200px;
+}
+
+
+
+.select__button{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 7px 14px 7px 20px;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    cursor: pointer;
+    transition-duration: 150ms;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    z-index: 1;
+    width: 100%;
+
+}
+
+.select__button--active{
+    background-color: rgb(163 163 163);
+}
+
+.select__button:hover{
+    background-color: darkgray;
+}
+
+
+
+.select__icon{
+    transition-duration: 150ms;
+}
+
+.select__icon--active{
+    transform: rotate(180deg);
+    transition-duration: 150ms;
+}
+
+
+
+.select__options-container{
+    /*background-color: #efefef;*/
+    border: 1px solid rgb(220, 220, 220);
+    display: flex;
+    border-radius: 7px;
+    flex-direction: column;
+    padding: 0;
+    overflow: auto;
+    width: 100%;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    position: absolute;
+    top: 110%;
+    margin-top: 5px;
+    z-index: 2;
+}
+
+.select__item{
+    list-style: none;
+    border-bottom: 1px solid lightgray;
+    padding: 7px 14px;
+    transition-duration: 150ms;
+    cursor: pointer;
+
+}
+.select__item--active{
+    background-color: rgb(212 212 212);
+}
+.select__item:hover{
+    background-color: rgb(229 229 229);
+
+}
+.select__options--container:last-child{
+    border-bottom: none;
+}

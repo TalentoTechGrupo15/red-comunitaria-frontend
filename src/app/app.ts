@@ -1,12 +1,20 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { Select } from "./components/select/select";
 
 @Component({
   selector: 'app-root',
-  imports: [],
+  imports: [Select],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('redcomunitaria-front');
+    countries = ['Colombia', 'Argentina', 'México', 'Chile', 'Perú'];
+    selectedCountry = 'Colombia';
+
+    pais = "";
+
+    changePais(value: string){
+        this.pais = value;
+    }
+
 }
