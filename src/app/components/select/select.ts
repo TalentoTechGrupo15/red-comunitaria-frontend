@@ -2,6 +2,11 @@ import { Component, ElementRef, EventEmitter, HostListener, Output } from '@angu
 import { NgClass } from '@angular/common';
 import { Input } from '@angular/core';
 
+interface Option {
+  id: number;
+  nombre: string;
+}
+
 @Component({
   selector: 'app-select',
   imports: [NgClass],
@@ -9,11 +14,11 @@ import { Input } from '@angular/core';
   styleUrl: './select.css',
 })
 export class Select {
-  @Input() selected: string = "";
-  @Input() options: string[] = []
+  @Input() selected: number | null = null;
+  @Input() options: Option[] = []
+  @Output() onChangeValue = new EventEmitter<number>();
   showOptions: boolean = true;
-  @Output() onChangeValue = new EventEmitter<string>();
-
+  
 
   constructor(private _eref: ElementRef) {}
 
@@ -21,9 +26,10 @@ export class Select {
     this.showOptions = !this.showOptions;
   }
 
-  handleClick(newOption: string){
-    this.selected = newOption;
+  handleClick(idOption: number){
+    this.selected = idOption;
     this.showOptions = false;
+    this.onChangeValue.emit(idOption);
   }
 
     @HostListener('document:click', ['$event'])
