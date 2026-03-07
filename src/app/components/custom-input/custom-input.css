@@ -1,0 +1,33 @@
+.custom-input{
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+}
+.custom-input__label{
+    font-weight: 600;
+}
+
+.custom-input__input{
+    border-radius: 4px;
+    padding: 7px 14px;
+    border: 1px solid rgb(200, 200, 200);
+    background-color: rgb(237, 237, 237);
+}
+.custom-input__input:focus{
+     outline-color: rgb(136, 168, 255);
+     background-color: white;
+}
+
+.custom-input__input--error{
+    outline-color: red;
+    border-color: red;
+    background-color: rgb(253, 236, 236);
+    color: red;
+}
+
+.custom-input__input--error::placeholder {
+    color: red;
+    opacity: 1;
+}

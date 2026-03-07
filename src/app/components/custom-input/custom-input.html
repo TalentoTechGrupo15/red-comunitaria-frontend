@@ -1,0 +1,17 @@
+<div class="custom-input">
+    @if (label !== '') {
+        <label [for]="id" class="custom-input__label">
+            {{label}}
+        </label>
+    }
+    <input 
+        [type]="type" 
+        [name]="name" 
+        [id]="id" 
+        class="custom-input__input" 
+        [formControl]="control"
+        [placeholder]="placeholder"
+        [ngClass]="{'custom-input__input--error': control.invalid && control.touched}"
+        >
+
+</div>

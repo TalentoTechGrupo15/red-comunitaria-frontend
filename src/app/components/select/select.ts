@@ -17,7 +17,7 @@ export class Select {
   @Input() selected: number | null = null;
   @Input() options: Option[] = []
   @Output() onChangeValue = new EventEmitter<number>();
-  showOptions: boolean = true;
+  showOptions: boolean = false;
   
 
   constructor(private _eref: ElementRef) {}

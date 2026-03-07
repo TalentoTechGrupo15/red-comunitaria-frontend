@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { Select } from "./components/select/select";
+import { CustomInput } from './components/custom-input/custom-input';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
     selector: 'app-root',
-    imports: [Select],
+    imports: [Select, CustomInput],
     templateUrl: './app.html',
     styleUrl: './app.css'
 })
@@ -17,7 +19,14 @@ export class App {
     ]
     selectedCountry = 'Colombia';
 
+
+
+    correo = new FormControl('', [Validators.required, Validators.email]);
+    cedula = new FormControl(0, [Validators.min(5), Validators.max(100)]);
+
     pais = 0;
+
+    //console.log(input5.value);
 
     changePais(value: number) {
         this.pais = value;

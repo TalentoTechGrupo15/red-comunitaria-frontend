@@ -1,5 +1,29 @@
 
-  <app-select 
-  [options]="countries" 
-  (onChangeValue)="changePais($event)"
-  ></app-select>
+<!-- Select -->
+<app-select [options]="countries" (onChangeValue)="changePais($event)"> </app-select>
+
+
+
+<!-- Input para texto y numeros -->
+
+<app-custom-input
+  name="email"
+  id="email"
+  label="Correo electrónico"
+  placeholder="ejemplo@correo.com"
+  [control]="correo"
+></app-custom-input>
+
+
+<app-custom-input
+  label="cedula"
+  name="cedula"
+  id="cedula"
+  type="number"
+  placeholder="123456789"
+  [control]="cedula"
+></app-custom-input>
+
+<!-- Valores de los input -->
+<p>Correo: {{ correo.value }}</p>
+<p>Cédula: {{ cedula.value }}</p>
