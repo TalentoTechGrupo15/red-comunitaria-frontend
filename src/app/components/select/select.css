@@ -46,6 +46,7 @@
 
 .select__options-container{
     /*background-color: #efefef;*/
+    background-color: white;
     border: 1px solid rgb(220, 220, 220);
     display: flex;
     border-radius: 7px;
