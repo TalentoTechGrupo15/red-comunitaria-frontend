@@ -1,6 +1,6 @@
 import { NgClass } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import {FormControl, FormsModule} from '@angular/forms';
+import { FormControl, FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
 
@@ -19,4 +19,8 @@ export class CustomInput {
     @Input() placeholder: string = "";
     @Input() control!: FormControl ;
     @Input() type: "text" | "number" = "text";
+
+    get valor(){
+        return this.control.value;
+    }
 }

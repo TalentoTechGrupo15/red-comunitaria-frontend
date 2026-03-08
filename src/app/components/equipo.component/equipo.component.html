@@ -1,0 +1,55 @@
+<div class="equipo">
+
+  <form [formGroup]="newEquipo" (ngSubmit)="crearEquipo()" class="equipo__form">
+    <h2 class="equipo__titulo">Crear Equipo</h2>
+
+    
+    <div class="equipo__contenedor-info">
+        <h2 class="equipo__subtitulos">Información equipo</h2>
+
+        <div class="equipo__contenedor-input">
+            <app-custom-input
+              name="nombre"
+              id="nombre"
+              label="Nombre del equipo"
+              placeholder="Ejemplo: EmpleaTech"
+              [control]="nombre"
+            ></app-custom-input>
+        
+            <app-custom-input
+              name="descripcion"
+              id="descripcion"
+              label="Descripción"
+              placeholder="Proyecto de empleabilidad"
+              [control]="descripcion"
+            ></app-custom-input>
+        </div>
+    </div>
+
+
+    <div class="equipo__contenedor-info">
+        <h2 class="equipo__subtitulos">Ingregantes del equipo</h2>
+        
+        <ul class="equipo__contenedor-integrantes">
+    
+          @for(integrante of integrantes.controls; track integrante; let i = $index){
+            <li class="equipo__integrante">
+              <app-custom-input
+                placeholder="usuario_1"
+                [control]="$any(integrante)"
+              ></app-custom-input>
+              <button type="button" (click)="eliminarIntegrante(i)" class="boton boton--error">Quitar</button>
+    
+            </li>
+    
+          }
+        </ul>
+    
+        <button type="button" (click)="agregarIntegrante()" class="boton boton-principal">
+          Agregar integrante
+        </button>
+    </div>
+
+
+  </form>
+</div>
