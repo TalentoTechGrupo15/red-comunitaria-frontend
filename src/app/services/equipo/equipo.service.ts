@@ -6,13 +6,14 @@ import { Equipo } from '../../models/equipo';
   providedIn: 'root',
 })
 export class EquipoService {
-    private crearEquipoUrl = "";
+    private crearEquipoUrl = "http://localhost:8080/usuario/crear_equipo";
     private obtenerEquipoUrl = "";
 
 
     constructor(private http: HttpClient){}
 
     crearEquipo(newEquipo: Equipo){
+        console.log(newEquipo);
         return this.http.post(this.crearEquipoUrl, newEquipo);
     }
 

@@ -1,5 +1,5 @@
 export interface Equipo {
     nombre: string;
-    descripción: string;
+    descripcion: string;
     integrantes: string[];
 }
