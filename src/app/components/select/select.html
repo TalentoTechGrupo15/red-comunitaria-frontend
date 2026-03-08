@@ -1,0 +1,28 @@
+<div class="select">
+    
+    <button (click)="onShowOptions()" 
+    class="select__button" 
+    [ngClass]="{'select__button--active': showOptions}">
+
+        {{options.find(o => o.id === selected)?.nombre || "Seleccionar"}}
+
+        <!-- icono de flecha -->
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" 
+        [ngClass]="{'select__icon--active': showOptions, 'select__icon': !showOptions}">
+            <path
+                d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" />
+        </svg>
+    </button>
+
+
+    <!-- lista de opciones que se mostrarán -->
+    @if(showOptions){
+    <ul class="select__options-container">
+        @for (o of options; track o){
+        <li (click)="handleClick(o.id)" class="select__item" [ngClass]="{'select__item--active': o.id === selected}">
+            {{o.nombre}}
+        </li>
+        }
+    </ul>
+    }
+</div>
