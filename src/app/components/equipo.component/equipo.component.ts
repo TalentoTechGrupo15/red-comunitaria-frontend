@@ -12,14 +12,18 @@ import { Equipo } from '../../models/equipo';
     styleUrl: './equipo.component.css',
 })
 export class EquipoComponent implements OnInit {
+
     private equipoService = inject(EquipoService);
     private equipo$!: Observable<any>;
+
 
     newEquipo = new FormGroup({
         nombre: new FormControl("", [Validators.required]),
         descripcion: new FormControl("", [Validators.required]),
         integrantes: new FormArray([]),
     });
+
+
 
     get integrantes() {
         return this.newEquipo.get("integrantes") as FormArray;
@@ -34,14 +38,14 @@ export class EquipoComponent implements OnInit {
     }
 
 
-    obtenerEquipo() {
-        this.equipo$ = this.equipoService.obtenerEquipo(5);
-    }
+    // obtenerEquipo() {
+    //     this.equipo$ = this.equipoService.obtenerEquipo(5);
+    // }
 
     ngOnInit() {
-        // Agregar un integrante por defecto
+        // Agrega un integrante por defecto
         this.integrantes.push(new FormControl("usuarioPorDefecto"));
-        this.equipo$ = this.equipoService.obtenerEquipo(6);
+        // this.equipo$ = this.equipoService.obtenerEquipo(6);
     }
 
     agregarIntegrante() {
@@ -60,6 +64,8 @@ export class EquipoComponent implements OnInit {
                 next: (res) => console.log('Equipo creado:', res),
                 error: (err) => console.error('Error al crear equipo:', err),
             });
+        }else{
+            this.newEquipo.markAllAsTouched();
         }
     }
 }
