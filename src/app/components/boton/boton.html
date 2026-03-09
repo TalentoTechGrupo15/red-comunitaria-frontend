@@ -1,3 +1,11 @@
-<button type="button"  class="boton boton-principal">
-          Agregar integrante
+<button
+  [type]="type"
+  class="boton"
+  (click)="handleOnClick()"
+  [ngClass]="{
+    'boton-principal': styleButton === 'primary',
+    'boton-secundario': styleButton === 'secondary',
+  }"
+>
+  {{ text }}
 </button>

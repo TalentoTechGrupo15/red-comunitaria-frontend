@@ -6,6 +6,7 @@ import { map, Observable } from "rxjs";
 import { AsyncPipe } from "@angular/common";
 import { SexoService } from "../../services/sexo/sexo.service";
 
+
 @Component({
   selector: "app-register",
   imports: [FormsModule, ReactiveFormsModule, CustomInput, Select, AsyncPipe],
@@ -71,7 +72,7 @@ export class Register implements OnInit {
     }
     
 
-    
+
     crearUsuario() {
         if (this.formUser.valid) {
             console.log(this.formUser.value);

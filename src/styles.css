@@ -2,12 +2,12 @@
 .boton{
     padding: 6px 14px;
     font-weight: 600;
-    border-radius: 10px;
+    border-radius: 7px;
     transition-duration: 150ms;
 }
 
 .boton:hover{
-    transform: scale(1.05);
+    transform: scale(1.04);
 }
 
 .boton-principal{

@@ -1,0 +1,18 @@
+<nav class="navbar">
+  <a routerLink="/" class="navbar__link">
+    <app-logo-empleatech></app-logo-empleatech>
+  </a>
+
+  <div class="navbar__contenedor-botones">
+    <app-boton 
+        styleButton="secondary" 
+        text="Iniciar Sesión"
+        (onClick)="goTo('/iniciar-sesion')"
+        ></app-boton>
+
+    <app-boton 
+    text="Registrarse"
+    (onClick)="goTo('/registro')"
+    ></app-boton>
+  </div>
+</nav>

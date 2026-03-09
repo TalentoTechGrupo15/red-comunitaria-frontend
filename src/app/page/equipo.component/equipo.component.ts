@@ -2,12 +2,14 @@ import { Component, inject, OnInit } from '@angular/core';
 import { EquipoService } from '../../services/equipo/equipo.service';
 import { FormArray, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { CustomInput } from '../custom-input/custom-input';
+import { CustomInput } from '../../components/custom-input/custom-input';
 import { Equipo } from '../../models/equipo';
+import { LogoEmpleatech } from "../../components/logo-empleatech/logo-empleatech";
+import { Boton } from "../../components/boton/boton";
 
 @Component({
     selector: 'app-equipo-component',
-    imports: [FormsModule, ReactiveFormsModule, CustomInput],
+    imports: [FormsModule, ReactiveFormsModule, CustomInput, LogoEmpleatech, Boton],
     templateUrl: './equipo.component.html',
     styleUrl: './equipo.component.css',
 })
