@@ -76,6 +76,8 @@ export class Register implements OnInit {
     crearUsuario() {
         if (this.formUser.valid) {
             console.log(this.formUser.value);
+
+            
         } else {
             this.formUser.markAllAsTouched();
         }
