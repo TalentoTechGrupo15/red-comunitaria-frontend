@@ -2,8 +2,12 @@ import { Routes } from '@angular/router';
 import { EquipoComponent } from './page/equipo.component/equipo.component';
 import { Register } from './page/register/register';
 import { Login } from './page/login/login';
+import { Dashboard } from './page/dashboard/dashboard';
 
 export const routes: Routes = [
+    {
+        path: "", component: Dashboard
+    },
     {
         path:"equipo", component: EquipoComponent
     },

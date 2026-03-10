@@ -1,0 +1,65 @@
+<div class="dashboard">
+
+    <section class="dashboard__filtros">
+
+        <span class=".secundary-text-color dashboard__titulo">FILTROS</span>
+
+        <form [formGroup]="formFiltros" (ngSubmit)="filtrar()" class="dashboard__form">
+
+            <app-custom-input name="nombre" id="nombre" label="Nombre" placeholder="Nombre del emprendimiento"
+                [control]="nombre"></app-custom-input>
+
+            <div class="dashboard__campo-select">
+                <label class="label">Tipo emprendimiento</label>
+
+                <app-select [options]="(tipoEmprendimiento$ | async) ?? []"
+                    (onChangeValue)="seleccionarCampo($event)"></app-select>
+
+            </div>
+
+
+
+
+
+            <div class="dashboard__campo-select">
+                <label class="label">Etapa</label>
+
+                <app-select [options]="(etapa$ | async) ?? []" (onChangeValue)="seleccionarCampo($event)"></app-select>
+
+            </div>
+
+            <div class="dashboard__campo-select">
+                <label class="label">Pais</label>
+
+                <app-select [options]="(pais$ | async) ?? []" (onChangeValue)="seleccionarCampo($event)"></app-select>
+
+            </div>
+
+            <!-- <div class="dashboard__campo-select">
+              <label class="label">Departamento</label>
+
+                <app-select [options]="(departamento$ | async) ?? []"
+            (onChangeValue)="seleccionarCampo($event)"></app-select>
+
+            </div> -->
+
+            <app-custom-input name="agruparPor" id="agruparPor" label="Agrupar por" placeholder="Sector, Región, etc."
+                [control]="agruparPor"></app-custom-input>
+
+            <app-custom-input name="numeroResultados" id="numeroResultados" label="Número de resultados"
+                placeholder="Ej: 10" [control]="numeroResultados" type="number"></app-custom-input>
+
+            <button type="submit" class="boton boton-principal">
+                Aplicar
+            </button>
+            <button type="submit" class="boton boton-secundario">
+                Borrar filtros
+            </button>
+        </form>
+
+
+
+
+    </section>
+    <section class="dashboard__resultados"></section>
+</div>

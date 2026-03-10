@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Sexo } from '../../models/sexo.model';
+import { Respuesta } from '../../models/respuesta.model';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +13,6 @@ export class SexoService {
     constructor(private http: HttpClient){}
 
     obtenerSexo(){
-        return this.http.get<Sexo[]>(this.getSexoUrl);
+        return this.http.get<Respuesta[]>(this.getSexoUrl);
     }
 }

@@ -1,18 +1,28 @@
 <nav class="navbar">
-  <a routerLink="/" class="navbar__link">
-    <app-logo-empleatech></app-logo-empleatech>
-  </a>
+    <a routerLink="/" class="navbar__link">
+        <app-logo-empleatech></app-logo-empleatech>
+    </a>
 
-  <div class="navbar__contenedor-botones">
-    <app-boton 
-        styleButton="secondary" 
-        text="Iniciar Sesión"
-        (onClick)="goTo('/iniciar-sesion')"
-        ></app-boton>
 
-    <app-boton 
-    text="Registrarse"
-    (onClick)="goTo('/registro')"
-    ></app-boton>
-  </div>
+    <div class="navbar__contenedor-botones">
+        @if(!(isLogged$ | async)){
+
+            <app-boton 
+            styleButton="secondary" text="Iniciar Sesión" 
+            (onClick)="goTo('/iniciar-sesion')"></app-boton>
+
+            <app-boton 
+            text="Registrarse" (onClick)="goTo('/registro')"></app-boton>
+
+        }@else{
+            <app-boton 
+            styleButton="secondary" text="Equipo" 
+            (onClick)="goTo('/equipo')"></app-boton>
+
+            <app-boton 
+            text="Emprendimiento" 
+            (onClick)="goTo('/emprendimiento')"></app-boton>
+        }
+    </div>
+
 </nav>

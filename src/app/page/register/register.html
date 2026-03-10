@@ -51,7 +51,7 @@
 
 
             <div class="registro__campo-select">
-              <label for="sexo" class="registro__label">Sexo</label>
+              <label for="sexo" class="label">Sexo</label>
 
                 <app-select [options]="(sexo$ | async) ?? []"
             (onChangeValue)="seleccionarSexo($event)"></app-select>

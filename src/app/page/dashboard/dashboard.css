@@ -1,0 +1,36 @@
+.dashboard{
+    display: flex;
+    width: 100%;
+    position: relative;
+    
+}
+
+.dashboard__filtros{
+    display: flex;
+    width: 300px;
+    height: 100%;
+    position: sticky;
+    border: 1px solid red;
+    flex-direction: column;
+    gap: 15px;
+    padding: 25px;
+}
+
+.dashboard__form{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    
+}
+
+.dashboard__titulo{
+    font-weight: 700;
+    font-size: 20px;
+    text-align: center;
+}
+
+.dashboard__campo-select{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}

@@ -5,6 +5,8 @@ import { Select } from "../../components/select/select";
 import { map, Observable } from "rxjs";
 import { AsyncPipe } from "@angular/common";
 import { SexoService } from "../../services/sexo/sexo.service";
+import { UsuarioService } from "../../services/usuario/usuario.service";
+import { Usuario } from "../../models/user.model";
 
 
 @Component({
@@ -16,15 +18,17 @@ import { SexoService } from "../../services/sexo/sexo.service";
 export class Register implements OnInit {
 
     private sexoService = inject(SexoService);
+    private usuarioService = inject(UsuarioService);
 
     sexo$!: Observable<{id: number; nombre: string}[]>;
 
     
     ngOnInit() {
-        this.sexo$ = this.sexoService.obtenerSexo().pipe(
-            map(sexos => sexos.map(s => ({ id: s.idSexo, nombre: s.nombre })))
-        );
+        this.sexo$ = this.sexoService.obtenerSexo();
     }
+
+
+
 
     formUser = new FormGroup({
         nombre: new FormControl("", [Validators.required]),
@@ -32,10 +36,12 @@ export class Register implements OnInit {
         cedula: new FormControl<number | null>(null, [Validators.required]),
         correo: new FormControl("", [Validators.required, Validators.email]),
         edad: new FormControl<number | null>(null, [Validators.required]),
-        sexo: new FormControl("", [Validators.required]),
+        sexo: new FormControl<number | null>(null, [Validators.required]),
         usuario: new FormControl("", [Validators.required]),
         clave: new FormControl("", [Validators.required]),
     });
+
+
 
 
     get nombre() { 
@@ -72,12 +78,20 @@ export class Register implements OnInit {
     }
     
 
-
     crearUsuario() {
         if (this.formUser.valid) {
             console.log(this.formUser.value);
+            const newUser = this.formUser.value as Usuario;
 
-            
+            this.usuarioService.registrarse(newUser).subscribe({
+                next(res){
+                    console.log("Usuario creado exitosamente: ", res);
+                },
+                error(error){
+                    console.log("Error al registrar usuario: ", error);
+                }
+            })
+
         } else {
             this.formUser.markAllAsTouched();
         }
