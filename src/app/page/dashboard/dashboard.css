@@ -1,0 +1,52 @@
+.dashboard{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    position: relative;
+}
+
+.dashboard__filtros{
+    display: flex;
+    width: 300px;
+    min-width: 300px;
+    max-width: 300px;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    background: #fff;
+    border-right: 1px solid rgb(189, 189, 189);
+    flex-direction: column;
+    gap: 15px;
+    padding: 25px 15px 15px 25px;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.04);
+    overflow-y: auto;
+}
+
+.dashboard__form{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    
+}
+
+.dashboard__titulo{
+    font-weight: 700;
+    font-size: 20px;
+    text-align: center;
+}
+
+.dashboard__campo-select{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.dashboard__resultados{
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    padding: 15px;
+    width: 100%;
+}

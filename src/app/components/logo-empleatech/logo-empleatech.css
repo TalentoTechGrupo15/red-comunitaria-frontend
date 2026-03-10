@@ -1,0 +1,17 @@
+.logo{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo__texto{
+    font-weight: 900;
+    color: white;
+}
+.logo__subtitulo{
+    color:#8ba0b8;
+}
+
+.logo__texto, .logo__subtitulo{
+    margin: 0;
+}

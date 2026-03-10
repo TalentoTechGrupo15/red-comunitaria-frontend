@@ -2,12 +2,13 @@
 .boton{
     padding: 6px 14px;
     font-weight: 600;
-    border-radius: 10px;
+    border-radius: 4px;
     transition-duration: 150ms;
 }
 
 .boton:hover{
-    transform: scale(1.05);
+    filter:brightness(1.5);
+    transform: scale(1.04);
 }
 
 .boton-principal{
@@ -18,8 +19,8 @@
 
 .boton-secundario{
     font-weight: 600;
-    border-radius: 10px;
-    border: 2px solid #0db9fd;
+
+    border: 1px solid #0db9fd;
     color: #0db9fd;
     background-color: transparent;
 }
@@ -27,5 +28,15 @@
 .boton--error{
     background-color: rgb(255, 238, 238);
     border: 1px solid red;
+    
     color: red;
+}
+
+.secundary-text-color{
+    color: #00cfff;
+}
+
+.label{
+    font-weight: 600;
+    font-size: 14px;
 }

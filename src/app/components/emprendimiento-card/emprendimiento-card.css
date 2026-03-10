@@ -1,0 +1,70 @@
+.emprendimiento-card{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #cacaca;
+    width: 350px;
+    height: fit-content;
+    padding: 20px;
+    background:white; 
+    border-radius:12px; 
+    color:#e0e6ed;
+    gap: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+.card__contenedor-tag{
+    display: flex;
+    gap: 10px;
+}
+.tag{
+    background:#1a3a5c; 
+    border: 1px solid #1a3a5c;
+    font-size:.9rem;
+
+    width: fit-content;
+    padding: 3px 10px;
+}
+
+.tag-tipo{
+   color:#60b0ff;
+   background-color: #00cfff1a;
+   border: 1px solid #00cfff;
+}
+
+.tag-etapa{
+    color:#9668c5;
+    background-color:#c084fc4c;
+    border: 1px solid #c084fc;
+}
+
+.card-titulo{
+    font-weight: 800;
+    font-size: 20px;
+    color: black;
+}
+.card__contenedor-info{
+
+}
+.card__info-titulo{
+    font-size:.8rem; 
+    color:#5a5a5a; 
+    text-transform:uppercase; 
+    letter-spacing:.5px;
+}
+.card__info-texto{
+    color:#00cfff; 
+    font-size:17px; 
+    font-weight:700;
+}
+
+.card__info-ubicacion{
+    font-size:.9rem; 
+    color:#8ba0b8;
+}
+
+.card__separador{
+    color: rgb(79, 79, 79);
+    padding: 0;
+    margin: 0;
+}

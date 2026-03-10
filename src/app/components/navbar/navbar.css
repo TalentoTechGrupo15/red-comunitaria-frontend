@@ -1,0 +1,21 @@
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid black;
+    padding: 5px 20px;
+    background-color: rgb(11, 48, 87);
+}
+
+.navbar__contenedor-botones{
+    display: flex;
+    gap: 15px;
+}
+
+.navbar__link{
+    text-decoration: none;
+    transition-duration: 150ms;
+}
+
+.navbar__link:hover{
+    transform: scale(1.03);
+}

@@ -2,24 +2,30 @@ import { Component, inject, OnInit } from '@angular/core';
 import { EquipoService } from '../../services/equipo/equipo.service';
 import { FormArray, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { CustomInput } from '../custom-input/custom-input';
+import { CustomInput } from '../../components/custom-input/custom-input';
 import { Equipo } from '../../models/equipo';
+import { LogoEmpleatech } from "../../components/logo-empleatech/logo-empleatech";
+import { Boton } from "../../components/boton/boton";
 
 @Component({
     selector: 'app-equipo-component',
-    imports: [FormsModule, ReactiveFormsModule, CustomInput],
+    imports: [FormsModule, ReactiveFormsModule, CustomInput, LogoEmpleatech, Boton],
     templateUrl: './equipo.component.html',
     styleUrl: './equipo.component.css',
 })
 export class EquipoComponent implements OnInit {
+
     private equipoService = inject(EquipoService);
     private equipo$!: Observable<any>;
+
 
     newEquipo = new FormGroup({
         nombre: new FormControl("", [Validators.required]),
         descripcion: new FormControl("", [Validators.required]),
         integrantes: new FormArray([]),
     });
+
+
 
     get integrantes() {
         return this.newEquipo.get("integrantes") as FormArray;
@@ -34,14 +40,14 @@ export class EquipoComponent implements OnInit {
     }
 
 
-    obtenerEquipo() {
-        this.equipo$ = this.equipoService.obtenerEquipo(5);
-    }
+    // obtenerEquipo() {
+    //     this.equipo$ = this.equipoService.obtenerEquipo(5);
+    // }
 
     ngOnInit() {
-        // Agregar un integrante por defecto
+        // Agrega un integrante por defecto
         this.integrantes.push(new FormControl("usuarioPorDefecto"));
-        this.equipo$ = this.equipoService.obtenerEquipo(6);
+        // this.equipo$ = this.equipoService.obtenerEquipo(6);
     }
 
     agregarIntegrante() {
@@ -60,6 +66,8 @@ export class EquipoComponent implements OnInit {
                 next: (res) => console.log('Equipo creado:', res),
                 error: (err) => console.error('Error al crear equipo:', err),
             });
+        }else{
+            this.newEquipo.markAllAsTouched();
         }
     }
 }

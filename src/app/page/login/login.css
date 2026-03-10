@@ -1,0 +1,50 @@
+.login{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+}
+
+.login__form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding: 40px;
+    border: 1px solid lightgray;
+    border-radius: 15px;
+    width: 450px;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+.login__titulo{
+    font-weight: 800;
+    text-align: center;
+    font-size: 36px;
+}
+
+.login__contenedor-input{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+}
+
+
+.login__link-registro{
+    color: #00cfff;
+    cursor: pointer;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    width: fit-content;
+}
+
+.login__link-registro:hover{
+    text-decoration: underline;
+}
+
+.login__boton{
+    width: 100%;
+}

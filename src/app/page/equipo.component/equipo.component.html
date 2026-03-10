@@ -29,6 +29,9 @@
 
     <div class="equipo__contenedor-info">
         <h2 class="equipo__subtitulos">Ingregantes del equipo</h2>
+                <button type="button" (click)="agregarIntegrante()" class="boton boton-secundario equipo__boton">
+          Agregar integrante
+        </button>
         
         <ul class="equipo__contenedor-integrantes">
     
@@ -45,9 +48,7 @@
           }
         </ul>
     
-        <button type="button" (click)="agregarIntegrante()" class="boton boton-secundario equipo__boton">
-          Agregar integrante
-        </button>
+
     </div>
 
     <button type="submit" class="boton boton-principal">

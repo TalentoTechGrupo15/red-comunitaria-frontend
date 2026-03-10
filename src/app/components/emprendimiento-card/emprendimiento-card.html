@@ -1,0 +1,27 @@
+<div class="emprendimiento-card card">
+    <div class="card__contenedor-tag">
+
+        <span class="tag badge tag-tipo">{{tipo}}</span>
+        <span class="tag badge tag-etapa">{{etapa}}</span>
+    </div>
+    <span class="card-titulo">{{ nombre }}</span>
+<hr class="card__separador">
+    <div class="card__contenedor-info row g-2 mb-2 ">
+        <div class="col-6">
+            <span class="card__info-titulo">Inversion</span>
+            <p class="card__info-texto"> {{inversion}} </p>
+        </div>
+        <div class="col-6">
+            <span class="card__info-titulo">Equipo</span>
+            <p class="card__info-texto"> {{equipo}} </p>
+        </div>
+        <div class="col-6">
+            <span class="card__info-titulo">Año</span>
+            <p class="card__info-texto"> {{year}} </p>
+        </div>
+    </div>
+
+    <div>
+        <p class="card__info-ubicacion"> 📍 {{pais}} — {{region}}</p>
+    </div>
+</div>

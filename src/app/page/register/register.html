@@ -1,0 +1,93 @@
+<div class="registro">
+
+  <form [formGroup]="formUser" (ngSubmit)="crearUsuario()" class="registro__form">
+    <h2 class="registro__titulo">Registro</h2>
+
+    <div class="registro__contenedor-info">
+        <h2 class="registro__subtitulos">Información personal</h2>
+
+        <div class="registro__contenedor-input">
+            <app-custom-input
+              name="nombre"
+              id="nombre"
+              label="Nombre"
+              placeholder="Ingrese su nombre"
+              [control]="nombre"
+            ></app-custom-input>
+
+            <app-custom-input
+              name="apellido"
+              id="apellido"
+              label="Apellido"
+              placeholder="Ingrese su apellido"
+              [control]="apellido"
+            ></app-custom-input>
+
+            <app-custom-input
+              name="cedula"
+              id="cedula"
+              label="Cédula"
+              placeholder="Ingrese su cédula"
+              type="number"
+              [control]="cedula"
+            ></app-custom-input>
+
+            <app-custom-input
+              name="correo"
+              id="correo"
+              label="Correo"
+              placeholder="ejemplo@correo.com"
+              [control]="correo"
+            ></app-custom-input>
+
+            <app-custom-input
+              name="edad"
+              id="edad"
+              label="Edad"
+              placeholder="Ingrese su edad"
+              type="number"
+              [control]="edad"
+            ></app-custom-input>
+
+
+            <div class="registro__campo-select">
+              <label for="sexo" class="label">Sexo</label>
+
+                <app-select [options]="(sexo$ | async) ?? []"
+            (onChangeValue)="seleccionarSexo($event)"></app-select>
+
+            </div>
+
+
+
+        </div>
+    </div>
+
+    <div class="registro__contenedor-info">
+        <h2 class="registro__subtitulos">Datos de acceso</h2>
+
+        <div class="registro__contenedor-input">
+            <app-custom-input
+              name="usuario"
+              id="usuario"
+              label="Usuario"
+              placeholder="Ingrese su usuario"
+              [control]="usuario"
+            ></app-custom-input>
+
+            <app-custom-input
+              name="clave"
+              id="clave"
+              label="Contraseña"
+              placeholder="Ingrese su contraseña"
+              [control]="clave"
+            ></app-custom-input>
+        </div>
+    </div>
+
+    <button type="submit" class="boton boton-principal">
+          Registrarse
+    </button>
+  </form>
+</div>
+
