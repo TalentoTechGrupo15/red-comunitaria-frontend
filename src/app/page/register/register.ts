@@ -83,14 +83,7 @@ export class Register implements OnInit {
             console.log(this.formUser.value);
             const newUser = this.formUser.value as Usuario;
 
-            this.usuarioService.registrarse(newUser).subscribe({
-                next(res){
-                    console.log("Usuario creado exitosamente: ", res);
-                },
-                error(error){
-                    console.log("Error al registrar usuario: ", error);
-                }
-            })
+            this.usuarioService.registrarse(newUser);
 
         } else {
             this.formUser.markAllAsTouched();

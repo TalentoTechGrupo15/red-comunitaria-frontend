@@ -11,8 +11,8 @@ export interface Usuario{
 
 export interface UsuarioInfo{
     usuario: string;
-    id_equipo: number;
-    id_proyecto: number;
+    idEquipo: number | null;
+    idEmprendimiento: number | null;
     token: string;
 }
 

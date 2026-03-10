@@ -6,10 +6,11 @@ import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { EquipoService } from '../../services/equipo/equipo.service';
 import { Respuesta } from '../../models/respuesta.model';
+import { EmprendimientoCard } from "../../components/emprendimiento-card/emprendimiento-card";
 
 @Component({
   selector: 'app-dashboard',
-  imports: [CustomInput, FormsModule, ReactiveFormsModule, Select, AsyncPipe],
+  imports: [CustomInput, FormsModule, ReactiveFormsModule, Select, AsyncPipe, EmprendimientoCard],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })
