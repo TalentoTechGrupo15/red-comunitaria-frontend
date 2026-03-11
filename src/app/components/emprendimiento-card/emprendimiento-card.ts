@@ -18,6 +18,4 @@ export class EmprendimientoCard {
     @Input() region: String = "region";
     @Input() pais: String = "pais";
 
-
-
 }

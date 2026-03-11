@@ -23,4 +23,8 @@ export class Navbar implements OnInit{
     goTo(page: string){
         this.router.navigate([page]);
     }
+
+    logout(){
+        this.usuarioService.logout();
+    }
 }

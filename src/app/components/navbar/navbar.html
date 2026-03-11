@@ -9,7 +9,7 @@
 
             <app-boton 
             styleButton="secondary" text="Iniciar Sesión" 
-            (onClick)="goTo('/iniciar-sesion')"></app-boton>
+            (onClick)="goTo('/login')"></app-boton>
 
             <app-boton 
             text="Registrarse" (onClick)="goTo('/registro')"></app-boton>
@@ -22,6 +22,10 @@
             <app-boton 
             text="Emprendimiento" 
             (onClick)="goTo('/emprendimiento')"></app-boton>
+
+            <app-boton 
+            text="Cerrar Sesión" 
+            (onClick)="logout()"></app-boton>
         }
     </div>
 

@@ -6,6 +6,7 @@ import { CustomInput } from '../../components/custom-input/custom-input';
 import { Equipo } from '../../models/equipo';
 import { LogoEmpleatech } from "../../components/logo-empleatech/logo-empleatech";
 import { Boton } from "../../components/boton/boton";
+import { UsuarioService } from '../../services/usuario/usuario.service';
 
 @Component({
     selector: 'app-equipo-component',
@@ -16,7 +17,10 @@ import { Boton } from "../../components/boton/boton";
 export class EquipoComponent implements OnInit {
 
     private equipoService = inject(EquipoService);
+
+
     private equipo$!: Observable<any>;
+    
 
 
     newEquipo = new FormGroup({
@@ -46,7 +50,7 @@ export class EquipoComponent implements OnInit {
 
     ngOnInit() {
         // Agrega un integrante por defecto
-        this.integrantes.push(new FormControl("usuarioPorDefecto"));
+        //this.integrantes.push(new FormControl("usuarioPorDefecto"));
         // this.equipo$ = this.equipoService.obtenerEquipo(6);
     }
 

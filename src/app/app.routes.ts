@@ -21,18 +21,7 @@ export const routes: Routes = [
         path:"iniciar-sesion", component: Login
     },
     {
-        path: '', 
-        redirectTo: '/login', 
-        pathMatch: 'full' 
-    },
-    {
         path: 'login', 
         component: LoginComponent
-    },
-
-    {
-        path: '**', 
-        redirectTo: '/login'  
-
     }
 ];
