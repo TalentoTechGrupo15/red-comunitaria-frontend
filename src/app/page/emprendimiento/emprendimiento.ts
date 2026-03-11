@@ -49,7 +49,7 @@ export class Emprendimiento implements OnInit {
   ngOnInit() {
 
     if(this.usuarioService.tieneEmprendimiento() || !this.usuarioService.tieneEquipo()){
-        this.router.navigate(["/"]);
+        //this.router.navigate(["/"]);
     }
     this.etapas$ = this.equipoService.obtenerEtapas();
     this.regiones$ = this.equipoService.obtenerDepartamentos();
