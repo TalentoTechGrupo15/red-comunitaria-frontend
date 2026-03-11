@@ -43,11 +43,9 @@
 
             </div> -->
 
-            <app-custom-input name="agruparPor" id="agruparPor" label="Agrupar por" placeholder="Sector, Región, etc."
-                [control]="agruparPor"></app-custom-input>
 
             <app-custom-input name="numeroResultados" id="numeroResultados" label="Número de resultados"
-                placeholder="Ej: 10" [control]="numeroResultados" type="number"></app-custom-input>
+                placeholder="Ejemplo: 10" [control]="numeroResultados" type="number"></app-custom-input>
 
             <button type="submit" class="boton boton-principal">
                 Aplicar
@@ -63,7 +61,7 @@
     </section>
     <section class="dashboard__resultados">
 
-        @for(emp of emprendimientos$; track emp){
+        @for(emp of (emprendimientos$ | async); track emp){
             <app-emprendimiento-card
                 [nombre]="emp.nombre"
                 [descripcion]="emp.descripcion"

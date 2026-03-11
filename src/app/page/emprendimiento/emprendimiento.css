@@ -1,0 +1,46 @@
+
+.emprendimiento {
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	padding: 2rem;
+    gap: 40px;
+}
+
+.emprendimiento__form {
+	background: #fff;
+	border-radius: 15px;
+    border: 1px solid lightgray;
+	box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+	padding:  40px;
+
+	width: 700px;
+	display: flex;
+	flex-direction: column;
+}
+
+.emprendimiento__titulo{
+    margin-bottom: 50px;
+}
+
+.emprendimiento__contenedor-info {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.emprendimiento__campo-select {
+	display: flex;
+	flex-direction: column;
+	gap: 0.3rem;
+}
+
+.boton-principal {
+	margin-top: 1.5rem;
+}
+
+.emprendimiento__texto-equipo{
+    font-weight: bolder;
+    color:#00cfff;
+    font-size: 20px;
+}

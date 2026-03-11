@@ -44,6 +44,27 @@ export class UsuarioService {
         return this.usuarioInfo.asObservable();
     }
 
+    tieneEquipo(): boolean{
+        if(this.usuarioInfo.value && this.usuarioInfo.value?.idEquipo){
+            return true;
+        }
+        return false;
+    }
+
+    tieneEmprendimiento(): boolean{
+        if(this.usuarioInfo.value && this.usuarioInfo.value.idEmprendimiento){
+            return true;
+        }
+        return false;
+    }
+
+    obtenerIdEquipo(): number | null {
+        return this.usuarioInfo.value?.idEquipo ?? null;
+    }
+
+    obtenerIdEmprendimiento(): number | null {
+        return this.usuarioInfo.value?.idEmprendimiento ?? null;
+    }
 
 
     registrarse(user: Usuario) {
