@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UsuarioService } from '../../services/usuario/usuario.service';
 
 @Component({
   selector: 'app-login',
@@ -14,22 +15,28 @@ export class LoginComponent {
   username: string = '';
   password: string = '';
   isLoading: boolean = false;
+  
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private usuarioService: UsuarioService) {}
 
   onSubmit(): void {
     if (this.username && this.password) {
       this.isLoading = true;
-
-      console.log('Iniciando sesión...', {
-        username: this.username,
-        password: this.password,
+      const credentials = {
+        usuario: this.username,
+        clave: this.password
+      };
+      this.usuarioService.login(credentials).subscribe({
+        next: (response)=>{
+            this.router.navigate(['/']);
+            this.isLoading = false;
+        },
+        error: (error)=>{
+            console.error('Login failed:', error);
+          this.isLoading = false;
+        }
       });
-
-      setTimeout(() => {
         this.isLoading = false;
-        this.router.navigate(['/equipo']);
-      }, 1500);
     }
   }
 

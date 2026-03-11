@@ -1,8 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Equipo } from '../../models/equipo';
 import { Respuesta } from '../../models/respuesta.model';
 import { Observable } from 'rxjs';
+import { SERVICES } from '../../constants/services.constants';
+import { UsuarioInfo } from '../../models/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +23,15 @@ export class EquipoService {
 
     crearEquipo(newEquipo: Equipo){
         console.log(newEquipo);
-        return this.http.post(this.crearEquipoUrl, newEquipo);
+
+        const usuarioInfo = localStorage.getItem(SERVICES.LOCALSTORAGE_NOMBRE_INFORMACION_USUARIO);
+        const token = usuarioInfo ? JSON.parse(usuarioInfo).token : "";
+        
+        console.log(token)
+        const headers = new HttpHeaders({'Authorization': `Bearer ${token}`});
+        return this.http.post(this.crearEquipoUrl, newEquipo, {headers});
+
+
     }
 
     obtenerEquipo(idUsuario: number){

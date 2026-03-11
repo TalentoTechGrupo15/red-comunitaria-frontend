@@ -68,12 +68,19 @@ export class UsuarioService {
     
     
     login(credentials: LoginCredentials) {
-        this.http.post<UsuarioInfo>(SERVICES.URL_INICIAR_SESION, credentials).subscribe({
-            next:(res) => {
+        return this.http.post<UsuarioInfo>(SERVICES.URL_INICIAR_SESION, credentials).pipe(tap((res)=>{
+        
+                console.log("Respuesta al iniciar sesion", res);
+                this.isLogged.next(false);
+                
                 this.usuarioInfo.next(res);
-                this.isLogged.next(true);
-            }
-        })
+                if(res.usuario !== "" && res.usuario !== null && res.token !== "" && res.token !== null){
+                    
+                    localStorage.setItem(SERVICES.LOCALSTORAGE_NOMBRE_INFORMACION_USUARIO, JSON.stringify(res));
+                    this.isLogged.next(true);
+                }     
+
+        }))
     }
     
     
