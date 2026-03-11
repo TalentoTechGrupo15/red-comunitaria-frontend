@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Equipo } from '../../models/equipo';
 import { Respuesta } from '../../models/respuesta.model';
 import { Observable } from 'rxjs';
@@ -18,7 +18,7 @@ export class EquipoService {
     private obtenerEtapasURL = "http://localhost:8080/etapa/listar";
     private obtenerTiposDeEmprendimientoURL = "http://localhost:8080/tipo_emprendimiento/listar";
 
-    private buscarEmprendimientoURL = "http://localhost:8080/emprendimiento/buscar"
+    private buscarEquipoURL = "http://localhost:8080/equipo/buscar";
 
 
     constructor(private http: HttpClient){}
@@ -36,17 +36,8 @@ export class EquipoService {
 
 
     }
-    buscarEmprendimientos(filtros: any){
-        const nombre = filtros.nombre;
-        const tipo = filtros.tipoEmprendimiento;
-        const pais = filtros.pais;
-        const agruparPor = filtros.agruparPor;
-        const numeroResultados = filtros.numeroResultados;
 
-        
-        const url = `${this.buscarEmprendimientoURL}?nombre=${nombre}&tipo=${tipo}&pais=${pais}&agruparPor=${agruparPor}&numeroResultados=${numeroResultados?numeroResultados : ""}`;
-        return this.http.get<Emprendimiento[]>(url);
-    }
+
 
     obtenerEquipo(idUsuario: number){
         return this.http.get(`${this.obtenerEquipoUrl}/${idUsuario}`);
@@ -66,5 +57,9 @@ export class EquipoService {
 
     obtenerTiposDeEmprendimiento(): Observable<Respuesta[]>{
         return this.http.get<Respuesta[]>(this.obtenerTiposDeEmprendimientoURL);
+    }
+
+    obtenerEquipoPorId(id: number): Observable<Equipo>{
+        return this.http.get<Equipo>(`${this.buscarEquipoURL}/${id}`);
     }
 }

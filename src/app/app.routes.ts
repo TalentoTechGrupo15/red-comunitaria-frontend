@@ -6,6 +6,7 @@ import { Login } from './page/login/login';
 import { Dashboard } from './page/dashboard/dashboard';
 
 import { LoginComponent } from './components/login/login.component';
+import { Emprendimiento } from './page/emprendimiento/emprendimiento';
 
 export const routes: Routes = [
     {
@@ -23,5 +24,9 @@ export const routes: Routes = [
     {
         path: 'login', 
         component: LoginComponent
+    },
+    {
+        path: "emprendimiento",
+        component: Emprendimiento
     }
 ];
