@@ -1,12 +1,13 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { CustomInput } from "../../components/custom-input/custom-input";
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Select } from "../../components/select/select";
-import { Observable } from 'rxjs';
+import { Observable, of, Subscription } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { EquipoService } from '../../services/equipo/equipo.service';
 import { Respuesta } from '../../models/respuesta.model';
 import { EmprendimientoCard } from "../../components/emprendimiento-card/emprendimiento-card";
+import { Emprendimiento } from '../../models/emprendimiento.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,17 +15,19 @@ import { EmprendimientoCard } from "../../components/emprendimiento-card/emprend
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })
-export class Dashboard implements OnInit {
+export class Dashboard implements OnInit, OnDestroy {
+
 
 
     private equipoService = inject(EquipoService);
-
     
     tipoEmprendimiento$!: Observable<Respuesta[]>;
     etapa$!: Observable<Respuesta[]>;
     pais$!: Observable<Respuesta[]>;
     departamento$!: Observable<Respuesta[]>;
+    emprendimientos$:Emprendimiento[] = [];
     //agruparPor$!: Observable<Respuesta[]>;
+    private suscripcionEmprendimiento!: Subscription;
 
 
     ngOnInit(): void {
@@ -44,6 +47,15 @@ export class Dashboard implements OnInit {
         agruparPor: new FormControl(""),
         numeroResultados: new FormControl<null | number>(null)
     })
+
+    filtrar(){
+        const filtros = this.formFiltros.value;
+        this.suscripcionEmprendimiento = this.equipoService.buscarEmprendimientos(filtros).subscribe({
+            next:(res)=>{
+                this.emprendimientos$ = res;
+            }
+        });
+    }
 
 
     get nombre(){
@@ -68,12 +80,18 @@ export class Dashboard implements OnInit {
         return this.formFiltros.get("numeroResultados") as FormControl;
     }
 
-    filtrar(){
 
-    }
 
 
     seleccionarCampo($event: number) {
         this.tipoEmprendimiento.setValue($event);
+    }
+
+    borrarFiltros(){
+        this.formFiltros.reset();
+    }
+
+        ngOnDestroy(): void {
+        this.suscripcionEmprendimiento.unsubscribe();
     }
 }

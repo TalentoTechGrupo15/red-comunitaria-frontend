@@ -52,7 +52,7 @@
             <button type="submit" class="boton boton-principal">
                 Aplicar
             </button>
-            <button type="submit" class="boton boton-secundario">
+            <button type="submit" class="boton boton-secundario" (click)="borrarFiltros()">
                 Borrar filtros
             </button>
         </form>
@@ -63,12 +63,18 @@
     </section>
     <section class="dashboard__resultados">
 
-        <app-emprendimiento-card></app-emprendimiento-card>
-        <app-emprendimiento-card></app-emprendimiento-card>
-        <app-emprendimiento-card></app-emprendimiento-card>
-        <app-emprendimiento-card></app-emprendimiento-card>
-        <app-emprendimiento-card></app-emprendimiento-card>
-        <app-emprendimiento-card></app-emprendimiento-card>
-        <app-emprendimiento-card></app-emprendimiento-card>
+        @for(emp of emprendimientos$; track emp){
+            <app-emprendimiento-card
+                [nombre]="emp.nombre"
+                [descripcion]="emp.descripcion"
+                [year]="emp.year"
+                [inversion]="emp.inversion"
+                [etapa]="emp.etapa?.nombre || ''"
+                [tipo]="emp.tipoEmprendimiento?.nombre ?? ''"
+                [equipo]="emp.equipo?.nombre  || ''"
+                [region]="emp.region?.nombre  || ''"
+                [pais]="emp.region?.pais?.nombre  || ''"
+            ></app-emprendimiento-card>
+        }
     </section>
 </div>
