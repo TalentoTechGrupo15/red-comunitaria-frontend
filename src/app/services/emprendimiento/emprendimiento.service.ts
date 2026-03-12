@@ -28,12 +28,13 @@ export class EmprendimientoService {
     buscarEmprendimientos(filtros: any) {
         const nombre = filtros.nombre;
         const tipo = filtros.tipoEmprendimiento;
+        const etapa = filtros.etapa;
         const pais = filtros.pais;
         const agruparPor = filtros.agruparPor;
         const numeroResultados = filtros.numeroResultados;
 
 
-        const url = `${this.buscarEmprendimientoURL}?nombre=${nombre}&tipo=${tipo}&pais=${pais}&agruparPor=${agruparPor}&numeroResultados=${numeroResultados ? numeroResultados : ""}`;
+        const url = `${this.buscarEmprendimientoURL}?nombre=${nombre}&tipo=${tipo}&etapa=${etapa}&pais=${pais}&agruparPor=${agruparPor}&numeroResultados=${numeroResultados ? numeroResultados : ""}`;
         return this.http.get<Emprendimiento[]>(url);
     }
 }

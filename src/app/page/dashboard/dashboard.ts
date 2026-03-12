@@ -88,12 +88,29 @@ export class Dashboard implements OnInit {
 
 
 
-    seleccionarCampo($event: number) {
-        this.tipoEmprendimiento.setValue($event);
+
+    actualizarCampo(campo: string, valor: any) {
+        this.formFiltros.get(campo)?.setValue(valor);
+        console.log("form actualiza: ", this.formFiltros.value)
     }
 
-    borrarFiltros(){
-        this.formFiltros.reset();
+    borrarFiltros() {
+        this.formFiltros.reset({
+            nombre: "",
+            tipoEmprendimiento: "",
+            etapa: "",
+            pais: "",
+            departamento: "",
+            agruparPor: "",
+            numeroResultados: null
+        });
+
+        this.tipoEmprendimiento.setValue("");
+        this.etapa.setValue("");
+        this.pais.setValue("");
+        this.departamento.setValue("");
+        this.agruparPor.setValue("");
+        this.filtrar();
     }
 
 }
