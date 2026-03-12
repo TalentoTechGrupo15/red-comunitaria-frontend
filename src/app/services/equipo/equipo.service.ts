@@ -1,16 +1,20 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Equipo } from '../../models/equipo';
+import { Equipo, EquipoRespuesta } from '../../models/equipo';
 import { Respuesta } from '../../models/respuesta.model';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { SERVICES } from '../../constants/services.constants';
 import { Emprendimiento } from '../../models/emprendimiento.model';
+import { UsuarioInfo } from '../../models/user.model';
+import { inject } from '@angular/core';
+import { UsuarioService } from '../usuario/usuario.service';
 
 
 @Injectable({
   providedIn: 'root',
 })
 export class EquipoService {
+        private usuarioService = inject(UsuarioService);
     private crearEquipoUrl = "http://localhost:8080/usuario/crear_equipo";
     private obtenerEquipoUrl = "";
     private obtenerPaisesURL = "http://localhost:8080/pais/listar";
@@ -28,11 +32,19 @@ export class EquipoService {
         console.log(newEquipo);
 
         const usuarioInfo = localStorage.getItem(SERVICES.LOCALSTORAGE_NOMBRE_INFORMACION_USUARIO);
+
         const token = usuarioInfo ? JSON.parse(usuarioInfo).token : "";
         
         console.log(token)
         const headers = new HttpHeaders({'Authorization': `Bearer ${token}`});
-        return this.http.post(this.crearEquipoUrl, newEquipo, {headers});
+
+        return this.http.post<EquipoRespuesta>(this.crearEquipoUrl, newEquipo, {headers}).pipe(
+            tap((res: EquipoRespuesta) => {
+                if (res && res.idEquipo) {
+                    this.usuarioService.actualizarIdEquipo(res.idEquipo);
+                }
+            })
+        );
 
 
     }

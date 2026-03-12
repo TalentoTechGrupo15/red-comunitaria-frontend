@@ -1,6 +1,7 @@
 <div class="registro">
 
   <form [formGroup]="formUser" (ngSubmit)="crearUsuario()" class="registro__form">
+
     <h2 class="registro__titulo">Registro</h2>
 
     <div class="registro__contenedor-info">
@@ -88,6 +89,11 @@
     <button type="submit" class="boton boton-principal">
           Registrarse
     </button>
+    @if (mensaje) {
+      <div class="mensaje-error">
+        {{ mensaje }}
+      </div>
+    }
   </form>
 </div>
 

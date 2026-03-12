@@ -5,6 +5,7 @@ import { Router, RouterLink } from "@angular/router";
 import { Observable } from 'rxjs';
 import { UsuarioService } from '../../services/usuario/usuario.service';
 import { AsyncPipe } from '@angular/common';
+import { UsuarioInfo } from '../../models/user.model';
 
 @Component({
   selector: 'app-navbar',
@@ -14,11 +15,14 @@ import { AsyncPipe } from '@angular/common';
 })
 export class Navbar implements OnInit{
     isLogged$!: Observable<Boolean>;
+    usuarioInfo$!: Observable<UsuarioInfo | null>;
+
     constructor(private router: Router, private usuarioService: UsuarioService) {}
 
 
     ngOnInit(): void {
         this.isLogged$ = this.usuarioService.isLogged$;
+        this.usuarioInfo$ = this.usuarioService.usuarioInfo$;
     }
     goTo(page: string){
         this.router.navigate([page]);

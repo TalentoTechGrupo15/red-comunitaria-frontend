@@ -1,6 +1,7 @@
 <div class="equipo">
 
   <form [formGroup]="newEquipo" (ngSubmit)="crearEquipo()" class="equipo__form">
+
     <h2 class="titulo">Crear Equipo</h2>
 
     
@@ -54,6 +55,11 @@
     <button type="submit" class="boton boton-principal">
           Enviar
     </button>
+    @if (mensaje) {
+      <div class="mensaje-error">
+        {{ mensaje }}
+      </div>
+    }
 
 
   </form>

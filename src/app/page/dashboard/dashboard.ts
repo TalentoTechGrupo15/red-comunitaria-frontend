@@ -9,6 +9,7 @@ import { Respuesta } from '../../models/respuesta.model';
 import { EmprendimientoCard } from "../../components/emprendimiento-card/emprendimiento-card";
 import { Emprendimiento } from '../../models/emprendimiento.model';
 import { EmprendimientoService } from '../../services/emprendimiento/emprendimiento.service';
+import { finalize, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,8 +19,6 @@ import { EmprendimientoService } from '../../services/emprendimiento/emprendimie
 })
 export class Dashboard implements OnInit {
 
-
-
     private equipoService = inject(EquipoService);
     private emprendimientoService = inject(EmprendimientoService);
     
@@ -28,6 +27,8 @@ export class Dashboard implements OnInit {
     pais$!: Observable<Respuesta[]>;
     departamento$!: Observable<Respuesta[]>;
     emprendimientos$!: Observable<Emprendimiento[]>;
+
+    isLoading: boolean = false;
 
 
     ngOnInit(): void {
@@ -52,9 +53,12 @@ export class Dashboard implements OnInit {
 
 
 
-    filtrar(){
+    filtrar() {
+        this.isLoading = true;
         const filtros = this.formFiltros.value;
-        this.emprendimientos$ = this.emprendimientoService.buscarEmprendimientos(filtros);
+        this.emprendimientos$ = this.emprendimientoService.buscarEmprendimientos(filtros).pipe(
+            finalize(() => this.isLoading = false)
+        );
     }
 
 
@@ -84,12 +88,29 @@ export class Dashboard implements OnInit {
 
 
 
-    seleccionarCampo($event: number) {
-        this.tipoEmprendimiento.setValue($event);
+
+    actualizarCampo(campo: string, valor: any) {
+        this.formFiltros.get(campo)?.setValue(valor);
+        console.log("form actualiza: ", this.formFiltros.value)
     }
 
-    borrarFiltros(){
-        this.formFiltros.reset();
+    borrarFiltros() {
+        this.formFiltros.reset({
+            nombre: "",
+            tipoEmprendimiento: "",
+            etapa: "",
+            pais: "",
+            departamento: "",
+            agruparPor: "",
+            numeroResultados: null
+        });
+
+        this.tipoEmprendimiento.setValue("");
+        this.etapa.setValue("");
+        this.pais.setValue("");
+        this.departamento.setValue("");
+        this.agruparPor.setValue("");
+        this.filtrar();
     }
 
 }

@@ -4,19 +4,22 @@ import { FormArray, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Va
 import { Observable } from 'rxjs';
 import { CustomInput } from '../../components/custom-input/custom-input';
 import { Equipo } from '../../models/equipo';
-import { LogoEmpleatech } from "../../components/logo-empleatech/logo-empleatech";
-import { Boton } from "../../components/boton/boton";
-import { UsuarioService } from '../../services/usuario/usuario.service';
+import { Router } from '@angular/router';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
     selector: 'app-equipo-component',
-    imports: [FormsModule, ReactiveFormsModule, CustomInput, LogoEmpleatech, Boton],
+    imports: [FormsModule, ReactiveFormsModule, CustomInput],
     templateUrl: './equipo.component.html',
     styleUrl: './equipo.component.css',
 })
 export class EquipoComponent implements OnInit {
 
+    mensaje: string | null = null;
+
     private equipoService = inject(EquipoService);
+    private router = inject(Router);
+    private cdr = inject(ChangeDetectorRef);
 
 
     private equipo$!: Observable<any>;
@@ -63,14 +66,26 @@ export class EquipoComponent implements OnInit {
     }
 
     crearEquipo() {
+        this.mensaje = null;
         if (this.newEquipo.valid && this.integrantes.length > 0) {
             const equipo = this.newEquipo.value as Equipo;
-            
             this.equipoService.crearEquipo(equipo).subscribe({
-                next: (res) => console.log('Equipo creado:', res),
-                error: (err) => console.error('Error al crear equipo:', err),
+                next: (res) => {
+                    if (res && res.idEquipo)  {
+                        this.router.navigate(["/"]);
+                    }
+                },
+                error: (err) => {
+                    if (err && typeof err.error === 'string') {
+                        this.mensaje = err.error;
+                    } else {
+                        this.mensaje = 'Error al crear equipo.';
+                    }
+                    this.cdr.detectChanges();
+                    console.error('Error al crear equipo:', err);
+                }
             });
-        }else{
+        } else {
             this.newEquipo.markAllAsTouched();
         }
     }

@@ -13,25 +13,27 @@
                 <label class="label">Tipo emprendimiento</label>
 
                 <app-select [options]="(tipoEmprendimiento$ | async) ?? []"
-                    (onChangeValue)="seleccionarCampo($event)"></app-select>
+                    (onChangeValue)="actualizarCampo('tipoEmprendimiento', $event)"
+                    [selected]="tipoEmprendimiento.value"></app-select>
 
             </div>
-
-
-
 
 
             <div class="dashboard__campo-select">
                 <label class="label">Etapa</label>
 
-                <app-select [options]="(etapa$ | async) ?? []" (onChangeValue)="seleccionarCampo($event)"></app-select>
+                <app-select [options]="(etapa$ | async) ?? []"
+                    (onChangeValue)="actualizarCampo('etapa', $event)"
+                    [selected]="etapa.value"></app-select>
 
             </div>
 
             <div class="dashboard__campo-select">
                 <label class="label">Pais</label>
 
-                <app-select [options]="(pais$ | async) ?? []" (onChangeValue)="seleccionarCampo($event)"></app-select>
+                <app-select [options]="(pais$ | async) ?? []"
+                    (onChangeValue)="actualizarCampo('pais', $event)"
+                    [selected]="pais.value"></app-select>
 
             </div>
 
@@ -61,18 +63,26 @@
     </section>
     <section class="dashboard__resultados">
 
-        @for(emp of (emprendimientos$ | async); track emp){
-            <app-emprendimiento-card
-                [nombre]="emp.nombre"
-                [descripcion]="emp.descripcion"
-                [year]="emp.year"
-                [inversion]="emp.inversion"
-                [etapa]="emp.etapa?.nombre || ''"
-                [tipo]="emp.tipoEmprendimiento?.nombre ?? ''"
-                [equipo]="emp.equipo?.nombre  || ''"
-                [region]="emp.region?.nombre  || ''"
-                [pais]="emp.region?.pais?.nombre  || ''"
-            ></app-emprendimiento-card>
-        }
+
+
+          
+
+            
+            @for(emp of (emprendimientos$ | async); track emp){
+
+                <app-emprendimiento-card
+                    [nombre]="emp.nombre"
+                    [descripcion]="emp.descripcion"
+                    [year]="emp.year"
+                    [inversion]="emp.inversion"
+                    [etapa]="emp.etapa?.nombre || ''"
+                    [tipo]="emp.tipoEmprendimiento?.nombre ?? ''"
+                    [equipo]="emp.equipo?.nombre  || ''"
+                    [region]="emp.region?.nombre  || ''"
+                    [pais]="emp.region?.pais?.nombre  || ''"
+                ></app-emprendimiento-card>
+            }
+            
+        
     </section>
 </div>
