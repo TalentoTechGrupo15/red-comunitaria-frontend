@@ -37,8 +37,12 @@
         </div>
 
         <button type="submit" class="btn-submit" [disabled]="!loginForm.form.valid || isLoading">
-          <span *ngIf="!isLoading">Iniciar sesión</span>
-          <span *ngIf="isLoading" class="loading-spinner"></span>
+          @if (!isLoading) {
+            <span>Iniciar sesión</span>
+          }
+          @if (isLoading) {
+            <span class="loading-spinner"></span>
+          }
         </button>
       </form>
     </div>

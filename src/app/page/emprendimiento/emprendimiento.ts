@@ -10,7 +10,11 @@ import { UsuarioInfo } from '../../models/user.model';
 import { UsuarioService } from '../../services/usuario/usuario.service';
 
 import { Router } from '@angular/router';
+import { ChangeDetectorRef } from '@angular/core';
 import { Equipo } from '../../models/equipo';
+
+
+
 @Component({
   selector: 'app-emprendimiento',
   imports: [FormsModule, ReactiveFormsModule, CustomInput, Select, AsyncPipe],
@@ -18,10 +22,16 @@ import { Equipo } from '../../models/equipo';
   styleUrl: './emprendimiento.css',
 })
 export class Emprendimiento implements OnInit {
+
+
+
   private equipoService = inject(EquipoService);
   private emprendimientoService = inject(EmprendimientoService);
   private usuarioService = inject(UsuarioService);
   private router = inject(Router);
+  private cdr = inject(ChangeDetectorRef);
+  mensaje: string | null = null;
+
 
   etapas$!: Observable<any[]>;
   regiones$!: Observable<any[]>;
@@ -90,17 +100,27 @@ export class Emprendimiento implements OnInit {
 
 
   crearEmprendimiento() {
+    this.mensaje = null;
     if (this.formEmprendimiento.valid) {
-
-        const emprendimiento = this.formEmprendimiento.value;
-        emprendimiento.idEquipo = this.usuarioService.obtenerIdEquipo();
-        
-
-        this.emprendimientoService.crearEmprendimiento(emprendimiento).subscribe({
-                next: (res) => console.log('Emprendimiento creado:', res),
-                error: (err) => console.error('Error al crear emprendimiento:', err),
-            });
-
+      const emprendimiento = this.formEmprendimiento.value;
+      emprendimiento.idEquipo = this.usuarioService.obtenerIdEquipo();
+      this.emprendimientoService.crearEmprendimiento(emprendimiento).subscribe({
+        next: (res) => {
+          if (res && res.idEmprendimiento) {
+            this.usuarioService.actualizarIdEmprendimiento(res.idEmprendimiento);
+            this.router.navigate(["/"]);
+          }
+        },
+        error: (err) => {
+          if (err && typeof err.error === 'string') {
+            this.mensaje = err.error;
+          } else {
+            this.mensaje = 'Error al crear emprendimiento.';
+          }
+          this.cdr.detectChanges();
+          console.error('Error al crear emprendimiento:', err);
+        }
+      });
       console.log(this.formEmprendimiento.value);
     } else {
       this.formEmprendimiento.markAllAsTouched();

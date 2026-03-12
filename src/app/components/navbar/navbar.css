@@ -19,3 +19,21 @@
 .navbar__link:hover{
     transform: scale(1.03);
 }
+
+.navbar__icono-boton {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: background 200ms;
+}
+
+.navbar__icono-boton:hover {
+    background: #007bff;
+
+}
+.navbar__icono-boton svg {
+    color: #fff;
+    stroke: #fff;
+}

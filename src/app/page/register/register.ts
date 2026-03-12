@@ -7,6 +7,8 @@ import { AsyncPipe } from "@angular/common";
 import { SexoService } from "../../services/sexo/sexo.service";
 import { UsuarioService } from "../../services/usuario/usuario.service";
 import { Usuario } from "../../models/user.model";
+import { Router } from "@angular/router";
+import { ChangeDetectorRef } from "@angular/core";
 
 
 @Component({
@@ -16,9 +18,12 @@ import { Usuario } from "../../models/user.model";
   styleUrl: "./register.css",
 })
 export class Register implements OnInit {
+    mensaje: string | null = null;
 
     private sexoService = inject(SexoService);
     private usuarioService = inject(UsuarioService);
+    private router = inject(Router);
+    private cdr = inject(ChangeDetectorRef);
 
     sexo$!: Observable<{id: number; nombre: string}[]>;
 
@@ -37,7 +42,7 @@ export class Register implements OnInit {
         correo: new FormControl("", [Validators.required, Validators.email]),
         edad: new FormControl<number | null>(null, [Validators.required]),
         sexo: new FormControl<number | null>(null, [Validators.required]),
-        usuario: new FormControl("", [Validators.required]),
+        usuario: new FormControl(""),
         clave: new FormControl("", [Validators.required]),
     });
 
@@ -79,12 +84,25 @@ export class Register implements OnInit {
     
 
     crearUsuario() {
+        this.mensaje = null;
         if (this.formUser.valid) {
-            console.log(this.formUser.value);
             const newUser = this.formUser.value as Usuario;
-
-            this.usuarioService.registrarse(newUser);
-
+            this.usuarioService.registrarse(newUser).subscribe({
+                next: (res) => {
+                    if (res && res.usuario && res.token) {
+                        this.router.navigate(["/"]);
+                    }
+                },
+                error: (error) => {
+                    if (error && typeof error.error === 'string') {
+                        this.mensaje = error.error;
+                    } else {
+                        this.mensaje = 'Error al registrarse.';
+                    }
+                    this.cdr.detectChanges();
+                    console.error('Error al registrarse:', error.error);
+                }
+            });
         } else {
             this.formUser.markAllAsTouched();
         }

@@ -9,6 +9,16 @@ import { SERVICES } from '../../constants/services.constants';
 })
 export class UsuarioService {
 
+    actualizarIdEmprendimiento(idEmprendimiento: number): void {
+        const usuarioActual = this.usuarioInfo.value;
+        if (usuarioActual) {
+            const actualizado = { ...usuarioActual, idEmprendimiento };
+            this.usuarioInfo.next(actualizado);
+            localStorage.setItem(SERVICES.LOCALSTORAGE_NOMBRE_INFORMACION_USUARIO, JSON.stringify(actualizado));
+        }
+    }
+
+
     private http = inject(HttpClient);
 
     private usuarioInfo = new BehaviorSubject<UsuarioInfo | null>(null);
@@ -68,21 +78,21 @@ export class UsuarioService {
 
 
     registrarse(user: Usuario) {
-        return this.http.post<UsuarioInfo>(SERVICES.URL_CREAR_USUARIO, user).subscribe({
-            next:(res)=>{
-                console.log("Respuesta al resgistrarse", res);
-                
-                this.usuarioInfo.next(res);
-                if(res.usuario !== "" && res.usuario !== null && res.token !== "" && res.token !== null){
-                    
-                    localStorage.setItem(SERVICES.LOCALSTORAGE_NOMBRE_INFORMACION_USUARIO, JSON.stringify(res));
-                    this.isLogged.next(true);
+        return this.http.post<UsuarioInfo>(SERVICES.URL_CREAR_USUARIO, user).pipe(
+            tap({
+                next: (res) => {
+                    console.log("Respuesta al registrarse", res);
+                    this.usuarioInfo.next(res);
+                    if(res.usuario !== "" && res.usuario !== null && res.token !== "" && res.token !== null){
+                        localStorage.setItem(SERVICES.LOCALSTORAGE_NOMBRE_INFORMACION_USUARIO, JSON.stringify(res));
+                        this.isLogged.next(true);
+                    }
+                },
+                error: (error) => {
+                    console.error("Error al registrarse: ", error);
                 }
-            },
-            error:(error)=>{
-                console.error("Error al registrarse: ", error);
-            }
-        });
+            })
+        );
     }
 
     
@@ -110,6 +120,17 @@ export class UsuarioService {
         this.isLogged.next(false);
         localStorage.removeItem(SERVICES.LOCALSTORAGE_NOMBRE_INFORMACION_USUARIO);
         localStorage.removeItem(SERVICES.LOCALSTORAGE_NOMBRE_TOKEN);
+    }
+
+
+
+    actualizarIdEquipo(idEquipo: number): void {
+        const usuarioActual = this.usuarioInfo.value;
+        if (usuarioActual) {
+            const actualizado = { ...usuarioActual, idEquipo };
+            this.usuarioInfo.next(actualizado);
+            localStorage.setItem(SERVICES.LOCALSTORAGE_NOMBRE_INFORMACION_USUARIO, JSON.stringify(actualizado));
+        }
     }
 
 }
