@@ -254,8 +254,6 @@
   transform: none;
 }
 
-
-
 @media (max-width: 768px) {
   .top-header {
     flex-direction: column;
