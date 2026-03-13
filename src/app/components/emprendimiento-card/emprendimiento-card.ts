@@ -7,15 +7,13 @@ import { Component, Input } from '@angular/core';
   styleUrl: './emprendimiento-card.css',
 })
 export class EmprendimientoCard {
-
-    @Input() nombre: String = "nombre";
-    @Input() descripcion: String = "descripcion";
-    @Input() year: String = "2019";
-    @Input() inversion: Number = 0;
-    @Input() etapa: String = "etapa";
-    @Input() tipo: String = "tipo";
-    @Input() equipo: String = "equipo";
-    @Input() region: String = "region";
-    @Input() pais: String = "pais";
-
+  @Input() nombre: String = 'nombre';
+  @Input() descripcion: String = 'descripcion';
+  @Input() year: String = '2019';
+  @Input() inversion: Number = 0;
+  @Input() etapa: String = 'etapa';
+  @Input() tipo: String = 'tipo';
+  @Input() equipo: String = 'equipo';
+  @Input() region: String = 'region';
+  @Input() pais: String = 'pais';
 }
