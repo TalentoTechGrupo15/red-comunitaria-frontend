@@ -1,23 +1,7 @@
 <div class="login-container">
-  <!-- <header class="top-header">
-    <div class="logos">
-      <div class="logo-tic">
-        <img src="assets/images/logo-tic.png" alt="TIC Logo">
-      </div>
-      <div class="logo-tech">
-        <img src="assets/images/logo-tech.png" alt="Realizate TECH Logo">
-      </div>
-    </div>
 
-    <div class="header-actions">
-      <button class="btn-link" (click)="navigateToCreateGroup()">
-        Crear grupo
-      </button>
-      <button class="btn-primary-outline" (click)="navigateToCreateEnterprise()">
-        Crear emprendimiento
-      </button>
-    </div>
-  </header> -->
+
+
 
   <div class="login-content">
     <div class="login-card">
@@ -38,10 +22,10 @@
 
         <button type="submit" class="btn-submit" [disabled]="!loginForm.form.valid || isLoading">
           @if (!isLoading) {
-            <span>Iniciar sesión</span>
+          <span>Iniciar sesión</span>
           }
           @if (isLoading) {
-            <span class="loading-spinner"></span>
+          <span class="loading-spinner"></span>
           }
         </button>
       </form>
